@@ -1,7 +1,7 @@
 kaboom({
     global: true,
     fullscreen: true,
-    scale: 2,
+    scale: 1.5,
     debug: true,
     clearColor: [0, 0, 0, 1],
 })
@@ -17,25 +17,31 @@ const FALL_DEATH = 400
 let isJumping = true
 
 
-loadRoot('https://i.imgur.com/')
-loadSprite('coin', 'wbKxhcd.png')
-loadSprite('evil-shroom', 'KPO3fR9.png')
-loadSprite('brick', 'pogC9x5.png')
-loadSprite('block', 'M6rwarW.png')
-loadSprite('mario', 'Wb1qfhK.png')
-loadSprite('mushroom', '0wMd92p.png')
-loadSprite('surprise', 'gesQ1KP.png')
-loadSprite('unboxed', 'bdrLpi6.png')
-loadSprite('pipe-top-left', 'ReTPiWY.png')
-loadSprite('pipe-top-right', 'hj2GK4n.png')
-loadSprite('pipe-bottom-left', 'c1cYSbt.png')
-loadSprite('pipe-bottom-right', 'nqQ79eI.png')
+loadSprite('coin', 'https://i.imgur.com/wbKxhcd.png')
+loadSprite('evil-shroom', 'https://i.imgur.com/KPO3fR9.png')
+loadSprite('brick', 'https://i.imgur.com/pogC9x5.png')
+loadSprite('block', 'https://i.imgur.com/M6rwarW.png')
+loadSprite('mario', 'https://i.imgur.com/Wb1qfhK.png')
+loadSprite('mushroom', 'https://i.imgur.com/0wMd92p.png')
+loadSprite('surprise', 'https://i.imgur.com/gesQ1KP.png')
+loadSprite('unboxed', 'https://i.imgur.com/bdrLpi6.png')
+loadSprite('pipe-top-left', 'https://i.imgur.com/ReTPiWY.png')
+loadSprite('pipe-top-right', 'https://i.imgur.com/hj2GK4n.png')
+loadSprite('pipe-bottom-left', 'https://i.imgur.com/c1cYSbt.png')
+loadSprite('pipe-bottom-right', 'https://i.imgur.com/nqQ79eI.png')
 
-loadSprite('blue-block', 'fVscIbn.png')
-loadSprite('blue-brick', '3e5YRQd.png')
-loadSprite('blue-steel', 'gqVoI2b.png')
-loadSprite('blue-evil-shroom', 'SvV4ueD.png')
-loadSprite('blue-surprise', 'RMqCc1G.png')
+loadSprite('blue-block', 'https://i.imgur.com/fVscIbn.png')
+loadSprite('blue-brick', 'https://i.imgur.com/3e5YRQd.png')
+loadSprite('blue-steel', 'https://i.imgur.com/gqVoI2b.png')
+loadSprite('blue-evil-shroom', 'https://i.imgur.com/SvV4ueD.png')
+loadSprite('blue-surprise', 'https://i.imgur.com/RMqCc1G.png')
+
+
+//adding on screen touch controlls 
+
+loadSprite('left','https://i.ibb.co/YtCqYJd/forward.png')
+loadSprite('right', 'https://i.ibb.co/wRGZ0t0/backward.png')
+loadSprite('ButtonA', 'https://i.ibb.co/LhYSHLW/buttonA.png')
 
 
 scene("game", ({ level , score }) => {
@@ -219,6 +225,42 @@ scene("game", ({ level , score }) => {
             player.jump(CURRENT_JUMP_FORCE)
         }
     })
+
+
+    //adding touch controls 
+
+    const KeyDown = {
+        left:false , 
+        right: false , 
+    }
+    const rightButton = add([
+        sprite('right'),
+        pos(10,height() -100),
+        //opacity(0.5),
+        //fixed(),
+        //area()
+    ])
+    const leftButton = add([
+        sprite('left'),
+        pos(140, height() - 100),
+        //opacity(0.5),
+        //fixed(),
+        //area()
+    ])
+    const actionButton = add([
+        sprite('ButtonA'),
+        pos(250, height() - 100),
+        // opacity(0.5),
+        //fixed(),
+        //area()
+    ])
+
+    // onTouchStart((id, pos) =>{
+    //     if(leftButton.hasPoint(pos)){
+    //         keyDown.left = true
+    //         //leftButton.opacity = 1
+    //     }
+    // })
 })
 
 scene('lose', ({ score }) => {
